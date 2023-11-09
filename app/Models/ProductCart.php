@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class ProductCart extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'product_id',
+        'cart_id',
+        'quantity',
+    ];
+
+    protected $table = 'product_carts';
+
+
+    public function product(){
+        return $this->hasMany(Product::class,'id','product_id')->with(['brand','voucher']);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+    
+
+
+}
